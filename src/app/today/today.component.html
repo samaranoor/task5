@@ -1,0 +1,107 @@
+<nav class="navbar navbar-light bg-danger">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="https://cdn.pixabay.com/photo/2017/03/02/16/54/iceland-2111811_640.jpg" alt="" width="100" height="24" class="d-inline-block align-text-top">
+        Current weather and forecasts
+      </a>
+    </div>
+  </nav>
+
+<img src="https://cdn.pixabay.com/photo/2015/07/05/10/18/tree-832079_1280.jpg"  height="200px" width="320px">
+<img src="https://cdn.pixabay.com/photo/2016/06/13/22/12/flash-1455285_1280.jpg"  height="200px" width="320px">
+<img src="https://cdn.pixabay.com/photo/2013/02/20/11/30/autumn-83761_640.jpg"  height="200px" width="320px">
+<img src="https://cdn.pixabay.com/photo/2017/02/14/03/03/ama-dablam-2064522_640.jpg"  height="200px" width="320px">
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+
+            <div class="text-center mt-5">
+                <div class="input-group">
+                    <input class="form-control" type="text" #userInput placeholder="Enter city name">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-danger" (click)="getCity(userInput.value)">Search</button>
+                    </div>
+                </div>
+                <h5>Current weather and forecasts in your city...</h5>
+                <h2>Weather in {{ weather.name }}, {{ weather.sys.country }}</h2>
+            </div>
+
+            <div>
+                <div class="text-center">
+                    <fa-icon [icon]="getWeatherIcon()"></fa-icon>
+                    <span class="temp">
+                        {{ weather.main.temp | number: '1.0-0' }},
+                        {{ convertTemperature(weather.main.temp) }} &#176; {{ temperatureUnit }}
+                    </span>
+                    <p class="weather-description">{{ weather.weather[0].description }}</p>
+                </div>
+            </div>
+
+            <table class="table custom-table table-light table-striped table-bordered table-sm mt-3">
+                <tbody>
+                    <br>
+                    <tr class="table-warning">
+                        <td>humidity</td><td>{{ weather.main.humidity }}%</td>
+                    </tr>
+                    <br>
+                    <tr class="table-danger">
+                        <td>pressure</td><td>{{ weather.main.pressure }} hpa</td>
+                    </tr>
+                    <br>
+                    <tr class="table-info">
+                        <td>Sunrise</td><td>{{ weather.sys.sunrise * 1000 | date:'H:mm' }}</td>
+                    </tr>
+                    <br>
+                    <tr class="table-success">
+                        <td>Sunset</td><td>{{ weather.sys.sunset * 1000 | date:'H:mm' }}</td>
+                        <br>
+                    </tr>
+                    <br>
+                    <tr class="table-primary">
+                        <td>Geo coords</td><td>{{ weather.coord.lat }},{{ weather.coord.lon }}</td>
+                    </tr>
+                    <br>
+                </tbody>
+            </table>
+
+            <div class="text-center mt-3">
+                <h3>{{ errorMessage }}</h3>
+            </div>
+
+            <div class="text-center mt-3">
+                <button class="btn btn-outline-danger" (click)="toggleTemperatureUnit()">
+                    'F' ? 'C'
+                </button>
+            </div>
+
+            <div class="text-center mt-3">
+                <button class="btn btn-outline-danger" (click)="addToFavorites(weather.name)">List city </button>
+            </div>
+
+            <div class="text-center mt-3">
+                <h3> Pre-used cities</h3>
+                <ul>
+                    <li *ngFor="let city of favoriteCities">{{ city }}</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-light bg-danger">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="https://cdn.pixabay.com/photo/2017/03/02/16/54/iceland-2111811_640.jpg" alt="" width="100" height="24" class="d-inline-block align-text-top">
+        Current weather and forecasts
+      </a>
+    </div>
+  </nav>
+
+
+
